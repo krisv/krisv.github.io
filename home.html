@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kris Verlaenen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1a1a1a;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 40px;
+        }
+
+        .dropdown-toggle {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+
+        .dropdown-toggle:hover {
+            color: #1a1a1a;
+        }
+
+        .lock-icon {
+            font-size: 0.85em;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #666;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            margin: 0;
+            font-size: 0.9em;
+            transition: background 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        .dropdown-content a::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 200px 0 120px;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .hero .highlight {
+            color: #667eea;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            color: #666;
+            max-width: 600px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .skill-tag {
+            padding: 8px 18px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 0;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card:hover {
+            border-color: #667eea;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.15);
+        }
+
+        .project-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .project-arrow {
+            margin-top: 20px;
+            color: #667eea;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin-left: 20px;
+            }
+
+            .container, .header-content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">Kris Verlaenen</a>
+            <nav>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" onclick="toggleDropdown()">
+                        My Agentic Workforce
+                        <span class="lock-icon">🔒</span>
+                    </div>
+                    <div class="dropdown-content" id="dropdownMenu">
+                        <a href="#">Coming soon ...</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Building the future with <span class="highlight">AI agents</span></h1>
+            <p>Exploring agentic AI systems, intelligent automation, and the next generation of software development.</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="section-title">About</div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Focus on AI & automation</h2>
+                    <p>With extensive experience in enterprise software architecture and intelligent systems, I focus on building practical AI solutions that solve real-world problems.</p>
+                    <p>Currently exploring the agentic workforce, at the intersection of agentic AI frameworks, automation and the future of software development.</p>
+                </div>
+                <div>
+                    <div class="skills">
+                        <span class="skill-tag">AI Agents</span>
+                        <span class="skill-tag">Process Automation</span>
+                        <span class="skill-tag">Enterprise Architecture</span>
+                        <span class="skill-tag">LLM Integration</span>
+                        <span class="skill-tag">System Design</span>
+                        <span class="skill-tag">Open Source</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/krisverlaenen/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/krisverlaenen" target="_blank">GitHub</a>
+                <a href="https://twitter.com/krisverlaenen" target="_blank">Twitter</a>
+            </div>
+            <p>&copy; 2026 Kris Verlaenen. Built with curiosity and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.lock-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
