@@ -1,19 +1,17 @@
 # Personal Website
 
-Personal webpage for Kris Verlaenen, showcasing work on AI agents, automation, and software development.
+Personal webpage for Kris Verlaenen - AI agents, automation, and enterprise software.
 
-## Features
+## Quick Start
 
-- Clean, modern design with responsive layout
-- Focus on agentic AI and intelligent automation
-- Social media links (LinkedIn, GitHub, Twitter)
+Open `index.html` in a web browser.
 
-## Tech Stack
+## Structure
 
-- Pure HTML/CSS/JavaScript
-- No build tools or frameworks required
-- Mobile responsive
+- `index.html` - Homepage
+- `blog/` - Blog posts and shared templates
+- `blog/images/` - Blog images
 
-## Usage
+## Tech
 
-Open `index.html` in a web browser to view the site locally.
+Pure HTML/CSS/JavaScript. No build required.

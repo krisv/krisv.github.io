@@ -53,8 +53,16 @@
             text-decoration: none;
         }
 
-        nav a {
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a, .dropdown {
             margin-left: 40px;
+        }
+
+        nav a {
             text-decoration: none;
             color: #666;
             font-size: 0.95em;
@@ -86,7 +94,6 @@
         .dropdown {
             position: relative;
             display: inline-block;
-            margin-left: 40px;
         }
 
         .dropdown-toggle {
@@ -105,9 +112,6 @@
             color: #1a1a1a;
         }
 
-        .lock-icon {
-            font-size: 0.85em;
-        }
 
         .dropdown-content {
             display: none;
@@ -147,6 +151,10 @@
             display: none;
         }
 
+        .lock-icon {
+            font-size: 0.85em;
+        }
+
         /* Hero Section */
         .hero {
             padding: 200px 0 120px;
@@ -170,6 +178,33 @@
             max-width: 600px;
             margin-bottom: 50px;
             font-weight: 300;
+        }
+
+        .hero .author-info {
+            font-size: 1.5em;
+            color: #999;
+            margin-top: 60px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .hero .author-info .name {
+            color: #667eea;
+            font-weight: 800;
+            display: block;
+            font-size: 1.6em;           
+        }
+
+        .hero .author-info .title {
+            color: #1a1a1a;
+            font-weight: 500;
+            display: block;
+        }
+
+        .hero .author-info .company {
+            color: #999;
+            font-weight: 400;
+            display: block;
         }
 
         .cta-buttons {
@@ -385,12 +420,20 @@
             <a href="/" class="logo">Kris Verlaenen</a>
             <nav>
                 <div class="dropdown">
-                    <div class="dropdown-toggle" onclick="toggleDropdown()">
+                    <div class="dropdown-toggle" onclick="toggleDropdown('blogsMenu')">
+                        Blogs
+                    </div>
+                    <div class="dropdown-content" id="blogsMenu">
+                        <a href="blog/part-1-what-is-agentic-workforce.html">Agentic Workforce</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" onclick="toggleDropdown('workforceMenu')">
                         My Agentic Workforce
                         <span class="lock-icon">🔒</span>
                     </div>
-                    <div class="dropdown-content" id="dropdownMenu">
-                        <a href="#">Coming soon ...</a>
+                    <div class="dropdown-content" id="workforceMenu">
+                        <a href="blog/part-1-what-is-agentic-workforce.html">Learn More</a>
                     </div>
                 </div>
             </nav>
@@ -401,6 +444,11 @@
         <div class="container">
             <h1>Building the future with <span class="highlight">AI agents</span></h1>
             <p>Exploring agentic AI systems, intelligent automation, and the next generation of software development.</p>
+            <div class="author-info">
+                <span class="name">Kris Verlaenen</span>
+                <span class="title">Distinguished Engineer</span>
+                <span class="company">Red Hat</span>
+            </div>
         </div>
     </section>
 
@@ -431,27 +479,34 @@
         <div class="container">
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/krisverlaenen/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/krisverlaenen" target="_blank">GitHub</a>
-                <a href="https://twitter.com/krisverlaenen" target="_blank">Twitter</a>
+                <a href="https://github.com/krisv" target="_blank">GitHub</a>
             </div>
             <p>&copy; 2026 Kris Verlaenen. Built with curiosity and code.</p>
         </div>
     </footer>
 
     <script>
-        function toggleDropdown() {
-            document.getElementById("dropdownMenu").classList.toggle("show");
+        function toggleDropdown(id) {
+            const menu = document.getElementById(id);
+            const allMenus = document.getElementsByClassName("dropdown-content");
+
+            // Close all other menus
+            for (let i = 0; i < allMenus.length; i++) {
+                if (allMenus[i].id !== id) {
+                    allMenus[i].classList.remove("show");
+                }
+            }
+
+            // Toggle the clicked menu
+            menu.classList.toggle("show");
         }
 
         // Close dropdown when clicking outside
         window.onclick = function(event) {
             if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.lock-icon')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
                 }
             }
         }
