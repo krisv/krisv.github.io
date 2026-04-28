@@ -445,6 +445,8 @@
         }
     </style>
 
+    <script src="blog/blog-template.js"></script>
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -466,30 +468,7 @@
     </script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="/" class="logo">Kris Verlaenen</a>
-            <nav>
-                <div class="dropdown">
-                    <div class="dropdown-toggle" onclick="toggleDropdown('blogsMenu')">
-                        Blogs
-                    </div>
-                    <div class="dropdown-content" id="blogsMenu">
-                        <a href="blog/part-1-what-is-agentic-workforce.html">Agentic Workforce</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <div class="dropdown-toggle" onclick="toggleDropdown('workforceMenu')">
-                        My Agentic Workforce
-                        <span class="lock-icon">🔒</span>
-                    </div>
-                    <div class="dropdown-content" id="workforceMenu">
-                        <a href="blog/part-1-what-is-agentic-workforce.html">Learn More</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Header injected by blog-template.js -->
 
     <section class="hero">
         <div class="container">
@@ -537,30 +516,8 @@
     </footer>
 
     <script>
-        function toggleDropdown(id) {
-            const menu = document.getElementById(id);
-            const allMenus = document.getElementsByClassName("dropdown-content");
-
-            // Close all other menus
-            for (let i = 0; i < allMenus.length; i++) {
-                if (allMenus[i].id !== id) {
-                    allMenus[i].classList.remove("show");
-                }
-            }
-
-            // Toggle the clicked menu
-            menu.classList.toggle("show");
-        }
-
-        // Close dropdown when clicking outside
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.lock-icon')) {
-                const dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].classList.remove('show');
-                }
-            }
-        }
+        // Initialize home page with dynamic header
+        initHomePage();
     </script>
 </body>
 </html>

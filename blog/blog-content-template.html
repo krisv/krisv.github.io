@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YCMBZG48DP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YCMBZG48DP');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[TITLE]</title>
+    <meta name="description" content="[DESCRIPTION]">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://krisv.github.io/blog/[SLUG].html">
+    <meta property="og:title" content="[TITLE]">
+    <meta property="og:description" content="[DESCRIPTION]">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://krisv.github.io/blog/[SLUG].html">
+    <meta name="twitter:title" content="[TITLE]">
+    <meta name="twitter:description" content="[DESCRIPTION]">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://krisv.github.io/blog/[SLUG].html">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="blog-styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "[TITLE]",
+      "author": {
+        "@type": "Person",
+        "name": "Kris Verlaenen",
+        "url": "https://krisv.github.io/"
+      },
+      "datePublished": "[YYYY-MM-DD]",
+      "dateModified": "[YYYY-MM-DD]",
+      "description": "[DESCRIPTION]",
+      "publisher": {
+        "@type": "Person",
+        "name": "Kris Verlaenen"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://krisv.github.io/blog/[SLUG].html"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header and footer injected by blog-template.js -->
+
+    <section class="blog-content">
+        <div class="container">
+            <h1>[TITLE]</h1>
+
+            <p class="blog-intro">[FIRST PARAGRAPH OR INTRO]</p>
+
+            <!-- BLOG CONTENT STARTS HERE -->
+
+            [CONTENT HTML GOES HERE]
+
+            <!-- BLOG CONTENT ENDS HERE -->
+
+        </div>
+    </section>
+
+    <script src="blog-template.js"></script>
+    <script>
+        // For standalone blog (no series navigation)
+        initStandaloneBlog();
+
+        // For series blog, use:
+        // initBlogPage(1);  // where 1 is the part number
+    </script>
+</body>
+</html>

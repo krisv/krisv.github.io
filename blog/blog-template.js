@@ -1,6 +1,9 @@
 // Common template functions for blog pages
 
-function loadHeader() {
+function loadHeader(fromRoot = false) {
+    // If called from root (index.html), add 'blog/' prefix to blog links
+    const blogPrefix = fromRoot ? 'blog/' : '';
+
     return `
     <header>
         <div class="header-content">
@@ -11,7 +14,7 @@ function loadHeader() {
                         Blogs
                     </div>
                     <div class="dropdown-content" id="blogsMenu">
-                        <a href="part-1-what-is-agentic-workforce.html">Agentic Workforce</a>
+                        <a href="${blogPrefix}part-1-what-is-agentic-workforce.html">Agentic Workforce</a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -20,7 +23,7 @@ function loadHeader() {
                         <span class="lock-icon">🔒</span>
                     </div>
                     <div class="dropdown-content" id="workforceMenu">
-                        <a href="part-1-what-is-agentic-workforce.html">Learn More</a>
+                        <a href="${blogPrefix}part-1-what-is-agentic-workforce.html">Learn More</a>
                     </div>
                 </div>
             </nav>
@@ -102,4 +105,21 @@ function initBlogPage(activePart) {
 
     // Append footer
     document.body.insertAdjacentHTML('beforeend', loadFooter());
+}
+
+// Initialize standalone blog page (no series navigation)
+function initStandaloneBlog() {
+    // Insert header
+    document.body.insertAdjacentHTML('afterbegin', loadHeader());
+
+    // Append footer
+    document.body.insertAdjacentHTML('beforeend', loadFooter());
+}
+
+// Initialize home page (index.html at root level)
+function initHomePage() {
+    // Insert header with blog/ prefix for links
+    document.body.insertAdjacentHTML('afterbegin', loadHeader(true));
+
+    // Footer already in index.html (has different styling)
 }
